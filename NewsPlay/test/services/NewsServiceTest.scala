@@ -1,6 +1,7 @@
 package services
 
 import models.NewsArticle
+import models.SearchParameters
 import org.scalatest.BeforeAndAfter
 import org.scalatest.funsuite.AnyFunSuiteLike
 
@@ -56,4 +57,33 @@ class NewsServiceTest extends AnyFunSuiteLike with BeforeAndAfter {
     }
   }
 
+  test("Search for articles by reporter and results should be returned") {
+    val title = "York"
+    val reporterName = "Grover"
+    val searchParameters: SearchParameters = new SearchParameters();
+    searchParameters.title = if (title.nonEmpty) Some(title) else None
+    searchParameters.reporterName = if (reporterName.nonEmpty) Some(reporterName) else None
+
+    val results = NewsService.SearchArticles(searchParameters)
+
+    assert(results.nonEmpty)
+
+    val wrongReporter = results.find(item => item.reporter.toLowerCase() !== reporterName.toLowerCase())
+    assert(wrongReporter.isEmpty)
+  }
+
+  test("Mock search contains") {
+    val title = "York"
+    val reporterName = "Grover"
+    val searchParameters: SearchParameters = new SearchParameters();
+    searchParameters.title = if (title.nonEmpty) Some(title) else None
+    searchParameters.reporterName = if (reporterName.nonEmpty) Some(reporterName) else None
+
+    /*var results = listOfNewsArticles.filter(item => searchParameters.title.contains(item.title)
+      && searchParameters.reporterName.forall(_ == item.reporter)).toList*/
+
+    var results = listOfNewsArticles.filter(item => item.title.indexOf(title) >= 0).toList
+
+    assert(results.nonEmpty)
+  }
 }

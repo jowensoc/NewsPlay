@@ -1,7 +1,7 @@
 package services
 
 import scala.collection.mutable.ListBuffer
-import models.NewsArticle
+import models.{NewsArticle, SearchParameters}
 
 object NewsService {
 
@@ -33,6 +33,14 @@ object NewsService {
 
   def GetNewsByReporterShortName(reporterName: String): List[NewsArticle] = {
     listOfNewsArticles.toList.filter(item => item.reportShortName == reporterName)
+  }
+
+  def SearchArticles(searchParameters: SearchParameters): List[NewsArticle] = {
+   /* listOfNewsArticles.filter(item => searchParameters.title.forall(_ == item.title)
+      && searchParameters.reporterName.forall(_ == item.reporter)).toList*/
+
+    listOfNewsArticles.filter(item => searchParameters.title.forall(_ == item.title)
+      && searchParameters.reporterName.forall(_ == item.reporter)).toList
   }
 
 }
