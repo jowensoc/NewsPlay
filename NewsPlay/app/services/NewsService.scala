@@ -15,6 +15,11 @@ object NewsService {
     list.addOne(new NewsArticle("Marvel movie filming in Edinburgh", "Ernie", 3))
     list.addOne(new NewsArticle("Warm weather heads to Scotland", "Big Bird", 4))
 
+    list.addOne(new NewsArticle("Asteriod hits local town. Everyone is fine", "Grover", 5))
+    list.addOne(new NewsArticle("Toast always lands on buttered side, scientist finds", "Bert", 6))
+    list.addOne(new NewsArticle("Cats are chaotic evil: Ernie opines", "Ernie", 7))
+    list.addOne(new NewsArticle("Coffee stocks runs low in office. Chaos everywhere", "Big Bird", 8))
+
     list
   }
 
@@ -24,6 +29,10 @@ object NewsService {
 
   def GetNewsByID(articleID: Int): Option[NewsArticle] = {
     listOfNewsArticles.toList.find(item => item.articleID == articleID)
+  }
+
+  def GetNewsByReporterShortName(reporterName: String): List[NewsArticle] = {
+    listOfNewsArticles.toList.filter(item => item.reportShortName == reporterName)
   }
 
 }

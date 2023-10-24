@@ -33,4 +33,12 @@ class NewsController @Inject()(val controllerComponents: ControllerComponents) e
 
     Ok(views.html.article(newsArticle))
   }
+
+  def reporter(reporterShortName: String) = Action { implicit request: Request[AnyContent] =>
+    val cleanReporterName = reporterShortName.replace(" ", "-").trim.toLowerCase()
+    val listOfArticles = services.NewsService.GetNewsByReporterShortName(cleanReporterName)
+    val reporterFullName = if (listOfArticles.nonEmpty) listOfArticles.head.reporter else "Reporter Name"
+
+    Ok(views.html.reporter(listOfArticles, reporterFullName))
+  }
 }

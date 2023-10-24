@@ -11,3 +11,5 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 GET     /news                           controllers.NewsController.index()
 GET     /news/:articleID                controllers.NewsController.article(articleID : Int)
+
+GET     /reporter/:reporterShortName                controllers.NewsController.reporter(reporterShortName : String)
