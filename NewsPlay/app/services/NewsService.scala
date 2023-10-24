@@ -10,15 +10,15 @@ object NewsService {
   def initialiseArticles(): ListBuffer[NewsArticle] = {
     var list = ListBuffer[NewsArticle]()
 
-    list.addOne(new NewsArticle("Jamie wins trip to New York", "Grover", 1))
-    list.addOne(new NewsArticle("Glasgow to host Eurovision", "Bert", 2))
-    list.addOne(new NewsArticle("Marvel movie filming in Edinburgh", "Ernie", 3))
-    list.addOne(new NewsArticle("Warm weather heads to Scotland", "Big Bird", 4))
+    list.addOne(new NewsArticle("Jamie wins trip to New York", "Grover", list.size + 1))
+    list.addOne(new NewsArticle("Glasgow to host Eurovision", "Bert", list.size + 1))
+    list.addOne(new NewsArticle("Marvel movie filming in Edinburgh", "Ernie", list.size + 1))
+    list.addOne(new NewsArticle("Warm weather heads to Scotland", "Big Bird", list.size + 1))
 
-    list.addOne(new NewsArticle("Asteriod hits local town. Everyone is fine", "Grover", 5))
-    list.addOne(new NewsArticle("Toast always lands on buttered side, scientist finds", "Bert", 6))
-    list.addOne(new NewsArticle("Cats are chaotic evil: Ernie opines", "Ernie", 7))
-    list.addOne(new NewsArticle("Coffee stocks runs low in office. Chaos everywhere", "Big Bird", 8))
+    list.addOne(new NewsArticle("Asteriod hits local town. Everyone is fine", "Grover", list.size + 1))
+    list.addOne(new NewsArticle("Toast always lands on buttered side, scientist finds", "Bert", list.size + 1))
+    list.addOne(new NewsArticle("Cats are chaotic evil: Ernie opines", "Ernie", list.size + 1))
+    list.addOne(new NewsArticle("Coffee stocks runs low in office. Chaos everywhere", "Big Bird", list.size + 1))
 
     list
   }
