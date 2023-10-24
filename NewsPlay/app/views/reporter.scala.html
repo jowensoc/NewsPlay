@@ -1,0 +1,9 @@
+@(list: List[NewsArticle], reporterFullName: String)
+
+@main("Reporter News Articles") {
+    <h1>News Articles written by @reporterFullName</h1>
+
+    @for(item <- list) {
+        <p><a href="/news/@item.articleID">@item.title</a> - @item.reporter</p>
+    }
+}

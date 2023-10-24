@@ -1,8 +1,13 @@
 package models
 
-class NewsArticle(val title: String, val author: String, val articleID: Int) {
+class NewsArticle(val title: String, val reporter: String, val articleID: Int) {
 
   var content: String = initialiseContent()
+  val reportShortName = initaliseShortName()
+
+  def initaliseShortName(): String = {
+    reporter.replace(" ", "-").trim.toLowerCase()
+  }
 
   def initialiseContent(): String = {
     val sb: StringBuilder = new StringBuilder()

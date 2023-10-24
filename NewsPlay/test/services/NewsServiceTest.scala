@@ -7,7 +7,7 @@ import org.scalatest.funsuite.AnyFunSuiteLike
 class NewsServiceTest extends AnyFunSuiteLike with BeforeAndAfter {
 
   var listOfNewsArticles:List[NewsArticle] = List[NewsArticle]()
-  val listOfAuthors: List[String] = List.apply("Grover", "Big Bird", "Bert", "Ernie")
+  val listOfReporters: List[String] = List.apply("Grover", "Big Bird", "Bert", "Ernie")
   var listOfArticleIDs:List[Int] = List(1,2,3,4)
 
   before {
@@ -25,9 +25,9 @@ class NewsServiceTest extends AnyFunSuiteLike with BeforeAndAfter {
     assert(results !== null)
   }
 
-  for (expectedAuthor <- listOfAuthors) {
-    test("Check if news has " + expectedAuthor + " as Author") {
-      val results = listOfNewsArticles.find(item => item.author.toLowerCase() === expectedAuthor.toLowerCase())
+  for (expectedReporter <- listOfReporters) {
+    test("Check if news has " + expectedReporter + " as Reporter") {
+      val results = listOfNewsArticles.find(item => item.reporter.toLowerCase() === expectedReporter.toLowerCase())
 
       assert(results !== null)
     }
@@ -45,6 +45,15 @@ class NewsServiceTest extends AnyFunSuiteLike with BeforeAndAfter {
     val results = NewsService.GetNewsByID(0)
 
     assert(results === None)
+  }
+
+  for (expectedReporter <- listOfReporters) {
+    test("Check if reporter " + expectedReporter + " has news articles") {
+      val reporterShortName = expectedReporter.replace(" ", "-").trim.toLowerCase()
+      val results = NewsService.GetNewsByReporterShortName(reporterShortName)
+
+      assert(results !== null)
+    }
   }
 
 }
