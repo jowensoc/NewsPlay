@@ -8,6 +8,7 @@ class NewsServiceTest extends AnyFunSuiteLike with BeforeAndAfter {
 
   var listOfNewsArticles:List[NewsArticle] = List[NewsArticle]()
   val listOfAuthors: List[String] = List.apply("Grover", "Big Bird", "Bert", "Ernie")
+  var listOfArticleIDs:List[Int] = List(1,2,3,4)
 
   before {
     listOfNewsArticles = NewsService.GetNews()
@@ -32,5 +33,18 @@ class NewsServiceTest extends AnyFunSuiteLike with BeforeAndAfter {
     }
   }
 
+  for (expectedID <- listOfArticleIDs) {
+    test("Check if news article exists by ID: " + expectedID) {
+      val results = NewsService.GetNewsByID(expectedID)
+
+      assert(results !== null)
+    }
+  }
+
+  test("Article should not be found") {
+    val results = NewsService.GetNewsByID(0)
+
+    assert(results === None)
+  }
 
 }

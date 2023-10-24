@@ -3,6 +3,7 @@ package controllers
 import javax.inject._
 import play.api._
 import play.api.mvc._
+import models.NewsArticle
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
@@ -21,5 +22,15 @@ class NewsController @Inject()(val controllerComponents: ControllerComponents) e
   def index() = Action { implicit request: Request[AnyContent] =>
     val list = services.NewsService.GetNews();
     Ok(views.html.news(list))
+  }
+
+  def article(articleID: Int) = Action { implicit request: Request[AnyContent] =>
+    val optNewsArticle = services.NewsService.GetNewsByID(articleID)
+    var blankArticle = new NewsArticle("Not Found", "Not Found", 0)
+    blankArticle.content = "<p>This article could not be found</p>"
+
+    val newsArticle = optNewsArticle.getOrElse(blankArticle)
+
+    Ok(views.html.article(newsArticle))
   }
 }
