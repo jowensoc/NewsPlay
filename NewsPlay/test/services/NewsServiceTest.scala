@@ -1,32 +1,36 @@
 package services
 
+import models.NewsArticle
+import org.scalatest.BeforeAndAfter
 import org.scalatest.funsuite.AnyFunSuiteLike
 
-class NewsServiceTest extends AnyFunSuiteLike {
+class NewsServiceTest extends AnyFunSuiteLike with BeforeAndAfter {
 
+  var listOfNewsArticles:List[NewsArticle] = List[NewsArticle]()
+  val listOfAuthors: List[String] = List.apply("Grover", "Big Bird", "Bert", "Ernie")
+
+  before {
+    listOfNewsArticles = NewsService.GetNews()
+  }
 
   test("Returns news articles") {
-    val newsArticles = NewsService.GetNews();
-
-    assert(newsArticles.nonEmpty)
+    assert(listOfNewsArticles.nonEmpty)
   }
 
   test("Check if news contains this title") {
-    val newsArticles = NewsService.GetNews();
-
     val expectedNewsTitle = "Marvel movie filming in Edinburgh"
-    val results = newsArticles.find(item => item.title.toLowerCase() === expectedNewsTitle.toLowerCase())
+    val results = listOfNewsArticles.find(item => item.title.toLowerCase() === expectedNewsTitle.toLowerCase())
 
     assert(results !== null)
   }
 
-  test("Check if news has Grover as Author") {
-    val newsArticles = NewsService.GetNews();
+  for (expectedAuthor <- listOfAuthors) {
+    test("Check if news has " + expectedAuthor + " as Author") {
+      val results = listOfNewsArticles.find(item => item.author.toLowerCase() === expectedAuthor.toLowerCase())
 
-    val expectedAuthor = "Grover"
-    val results = newsArticles.find(item => item.author.toLowerCase() === expectedAuthor.toLowerCase())
-
-    assert(results !== null)
+      assert(results !== null)
+    }
   }
+
 
 }
