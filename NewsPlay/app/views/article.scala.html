@@ -1,0 +1,8 @@
+@(article: NewsArticle)
+
+@main("News Article") {
+    <h1>@article.title</h1>
+    <p>Written by @article.author</p>
+
+    @Html(article.content)
+}
