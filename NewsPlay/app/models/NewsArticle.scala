@@ -3,7 +3,7 @@ package models
 class NewsArticle(val title: String, val reporter: String, val articleID: Int) {
 
   var content: String = initialiseContent()
-  val reportShortName = initaliseShortName()
+  val reportShortName: String = initaliseShortName()
 
   def initaliseShortName(): String = {
     reporter.replace(" ", "-").trim.toLowerCase()
