@@ -1,0 +1,9 @@
+@(list: List[String])
+
+@main("News Page") {
+    <h1>News Articles</h1>
+
+    @for(item <- list) {
+        <p>@item</p>
+    }
+}
