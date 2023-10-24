@@ -14,8 +14,17 @@ class NewsServiceTest extends AnyFunSuiteLike {
   test("Check if news contains this title") {
     val newsArticles = NewsService.GetNews();
 
-    var expectedNewsTitle = "Marvel movie filming in Edinburgh"
-    val results = newsArticles.find(item => item.toLowerCase() === expectedNewsTitle.toLowerCase())
+    val expectedNewsTitle = "Marvel movie filming in Edinburgh"
+    val results = newsArticles.find(item => item.title.toLowerCase() === expectedNewsTitle.toLowerCase())
+
+    assert(results !== null)
+  }
+
+  test("Check if news has Grover as Author") {
+    val newsArticles = NewsService.GetNews();
+
+    val expectedAuthor = "Grover"
+    val results = newsArticles.find(item => item.author.toLowerCase() === expectedAuthor.toLowerCase())
 
     assert(results !== null)
   }

@@ -1,9 +1,9 @@
-@(list: List[String])
+@(list: List[NewsArticle])
 
 @main("News Page") {
     <h1>News Articles</h1>
 
     @for(item <- list) {
-        <p>@item</p>
+        <p>@item.title - @item.author</p>
     }
 }
