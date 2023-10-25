@@ -36,10 +36,7 @@ object NewsService {
   }
 
   def SearchArticles(searchParameters: SearchParameters): List[NewsArticle] = {
-   /* listOfNewsArticles.filter(item => searchParameters.title.forall(_ == item.title)
-      && searchParameters.reporterName.forall(_ == item.reporter)).toList*/
-
-    listOfNewsArticles.filter(item => searchParameters.title.forall(_ == item.title)
+   listOfNewsArticles.filter(item => searchParameters.title.forall(_ == item.title)
       && searchParameters.reporterName.forall(_ == item.reporter)).toList
   }
 
