@@ -15,7 +15,7 @@ object NewsService {
     list.addOne(new NewsArticle("Marvel movie filming in Edinburgh", "Ernie", list.size + 1))
     list.addOne(new NewsArticle("Warm weather heads to Scotland", "Big Bird", list.size + 1))
 
-    list.addOne(new NewsArticle("Asteriod hits local town. Everyone is fine", "Grover", list.size + 1))
+    list.addOne(new NewsArticle("Asteroid hits local town. Everyone is fine", "Grover", list.size + 1))
     list.addOne(new NewsArticle("Toast always lands on buttered side, scientist finds", "Bert", list.size + 1))
     list.addOne(new NewsArticle("Cats are chaotic evil: Ernie opines", "Ernie", list.size + 1))
     list.addOne(new NewsArticle("Coffee stocks runs low in office. Chaos everywhere", "Big Bird", list.size + 1))
@@ -38,6 +38,18 @@ object NewsService {
   def SearchArticles(searchParameters: SearchParameters): List[NewsArticle] = {
    listOfNewsArticles.filter(item => searchParameters.title.forall(_ == item.title)
       && searchParameters.reporterName.forall(_ == item.reporter)).toList
+  }
+
+  def SearchArticlesByPattern(searchParameters: SearchParameters): List[NewsArticle] = {
+    listOfNewsArticles.filter(item => matchOptionPattern(searchParameters.title, item.title) && searchParameters.reporterName.forall(_ == item.reporter)).toList
+  }
+
+  private def matchOptionPattern(option: Option[String], keyword: String): Boolean = {
+    option match {
+      case Some(value) => keyword.contains(value)
+      case None => false
+      case _ => false
+    }
   }
 
 }
