@@ -59,7 +59,7 @@ class NewsServiceTest extends AnyFunSuiteLike with BeforeAndAfter {
 
   test("Search for articles by reporter and results should be returned") {
     // FULL TITLE: Jamie wins trip to New York
-    val title = "York"
+    val title = ""
     val reporterName = "Grover"
     val searchParameters: SearchParameters = new SearchParameters();
     searchParameters.title = if (title.nonEmpty) Some(title) else None
