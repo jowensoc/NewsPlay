@@ -1,7 +1,7 @@
-@(article: NewsArticle)
+@(article: NewsArticle, adminOptions: AdminOptions)
 
 @main("News Article") {
-    <h3>Edit News</h3>
+    <h3>@adminOptions.pageHeading</h3>
 
     @helper.form(action = routes.AdminController.savenews) {
         <table>

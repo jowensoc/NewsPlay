@@ -1,6 +1,6 @@
 package controllers
 
-import models.NewsArticle
+import models.{AdminOptions, NewsArticle}
 
 import javax.inject._
 import play.api._
@@ -29,7 +29,9 @@ class AdminController @Inject()(val controllerComponents: ControllerComponents) 
   def createnews() = Action { implicit request: Request[AnyContent] =>
     val newsArticle = SharedService.defaultNewsArticle()
 
-    Ok(views.html.admin.newsedit(newsArticle))
+    val adminOptions = new AdminOptions("Create News")
+
+    Ok(views.html.admin.newsedit(newsArticle, adminOptions))
   }
 
   def editnews(articleID: Integer) = Action { implicit request: Request[AnyContent] =>
@@ -39,7 +41,9 @@ class AdminController @Inject()(val controllerComponents: ControllerComponents) 
 
     val newsArticle = optNewsArticle.getOrElse(blankArticle)
 
-    Ok(views.html.admin.newsedit(newsArticle))
+    val adminOptions = new AdminOptions("Edit News")
+
+    Ok(views.html.admin.newsedit(newsArticle, adminOptions))
   }
 
   def savenews() = Action { implicit request: Request[AnyContent] =>
