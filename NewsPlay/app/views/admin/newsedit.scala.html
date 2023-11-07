@@ -1,0 +1,26 @@
+@(article: NewsArticle)
+
+@main("News Article") {
+    <h3>Edit News</h3>
+
+    @helper.form(action = routes.AdminController.savenews) {
+        <table>
+            <tr>
+                <td><p>Title</p></td>
+                <td><input type="text" value="@article.title" id="ArticleTitle" /></td>
+            </tr>
+            <tr>
+                <td><p>Reporter</p></td>
+                <td><input type="text" value="@article.reporter" id="Reporter" /></td>
+            </tr>
+            <tr>
+                <td><p>Article</p></td>
+                <td><textarea id="Reporter" cols="100" rows="5">@article.content</textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><p><input type="submit" value="Save"></p></td>
+            </tr>
+        </table>
+    }
+
+}

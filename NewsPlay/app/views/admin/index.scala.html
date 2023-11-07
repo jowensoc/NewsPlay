@@ -1,0 +1,20 @@
+@(list: List[NewsArticle])
+
+@main("Potato News - Edit news articles") {
+    <h1>Edit Articles</h1>
+    <p>Update News Articles below or <a href="/admin/createnews">create a new article</a></p>
+
+    <table>
+        <tr>
+            <th>Title</th><th>Reporter</th><th>Options</th>
+        </tr>
+        @for(item <- list) {
+            <tr>
+                <td><a href="/admin/editnews/@item.articleID">@item.title</a></td>
+                <td>@item.reporter</td>
+                <td><p>Delete</p></td>
+            </tr>
+        }
+    </table>
+
+}

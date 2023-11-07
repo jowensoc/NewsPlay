@@ -9,7 +9,16 @@ GET     /                           controllers.HomeController.index()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
+# read only news
 GET     /news                           controllers.NewsController.index()
 GET     /news/:articleID                controllers.NewsController.article(articleID : Int)
+GET     /reporter/:reporterShortName    controllers.NewsController.reporter(reporterShortName : String)
 
-GET     /reporter/:reporterShortName                controllers.NewsController.reporter(reporterShortName : String)
+# edit news
+GET     /admin                          controllers.AdminController.index()
+GET     /admin/                         controllers.AdminController.index()
+GET     /admin/createnews               controllers.AdminController.createnews()
+GET     /admin/editnews/:articleID      controllers.AdminController.editnews(articleID: Int)
+
+# update news
+POST     /admin/savenews                    controllers.AdminController.savenews()
