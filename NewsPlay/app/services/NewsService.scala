@@ -1,7 +1,7 @@
 package services
 
 import scala.collection.mutable.ListBuffer
-import models.{NewsArticle, SearchParameters}
+import models.{NewsArticle, Reporter, SearchParameters}
 
 object NewsService {
 
@@ -28,6 +28,10 @@ object NewsService {
   def SearchArticles(searchParameters: SearchParameters): List[NewsArticle] = {
    listOfNewsArticles.filter(item => searchParameters.title.forall(_ == item.title)
       && searchParameters.reporterName.forall(_ == item.reporter)).toList
+  }
+
+  def GetListOfReporters(): List[Reporter] = {
+    listOfNewsArticles.sortBy(item => item.reporter).distinctBy(item => item.reporter).map(x => new Reporter(x.reporter)).toList
   }
 
   def SearchArticlesByPattern(searchParameters: SearchParameters): List[NewsArticle] = {

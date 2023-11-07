@@ -1,6 +1,6 @@
 package models
 
 class AdminOptions(heading: String) {
-  val listOfReporters : Option[List[String]] = null
+  var listOfReporters : Option[List[Reporter]] = None
   val pageHeading: String = heading
 }

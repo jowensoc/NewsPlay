@@ -36,12 +36,12 @@ class AdminController @Inject()(val controllerComponents: ControllerComponents) 
 
   def editnews(articleID: Integer) = Action { implicit request: Request[AnyContent] =>
     val optNewsArticle = services.NewsService.GetNewsByID(articleID)
-    var blankArticle = new NewsArticle("Not Found", "Not Found", 0)
-    blankArticle.content = "<p>This article could not be found</p>"
 
+    val blankArticle = SharedService.createNewsArticle(0, "Not Found", "Not Found", "<p>This article could not be found</p>")
     val newsArticle = optNewsArticle.getOrElse(blankArticle)
 
     val adminOptions = new AdminOptions("Edit News")
+    adminOptions.listOfReporters = Option(services.NewsService.GetListOfReporters())
 
     Ok(views.html.admin.newsedit(newsArticle, adminOptions))
   }

@@ -73,4 +73,9 @@ class NewsServiceTest extends AnyFunSuiteLike with BeforeAndAfter {
     assert(wrongReporter.isEmpty)
   }
 
+  test("Get a List of reporters") {
+    val results = NewsService.GetListOfReporters()
+
+    assert(results !== null)
+  }
 }

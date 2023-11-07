@@ -18,4 +18,12 @@ object SharedService {
     newsArticle
   }
 
+  def generateShortName(fullName: String): String = {
+    if (fullName.isEmpty) {
+      return  ""
+    }
+
+    fullName.replace(" ", "-").trim.toLowerCase()
+  }
+
 }

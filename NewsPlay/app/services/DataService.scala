@@ -1,6 +1,6 @@
 package services
 
-import models.NewsArticle
+import models.{NewsArticle, Reporter}
 
 import scala.collection.mutable.ListBuffer
 
@@ -56,6 +56,7 @@ class NewsDataService(val environmentName: String) extends DataService {
 
     list
   }
+
 
 
 }
