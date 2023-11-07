@@ -21,4 +21,5 @@ GET     /admin/createnews               controllers.AdminController.createnews()
 GET     /admin/editnews/:articleID      controllers.AdminController.editnews(articleID: Int)
 
 # update news
++nocsrf
 POST     /admin/savenews                    controllers.AdminController.savenews()
