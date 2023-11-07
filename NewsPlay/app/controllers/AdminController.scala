@@ -47,6 +47,8 @@ class AdminController @Inject()(val controllerComponents: ControllerComponents) 
   }
 
   def savenews() = Action { implicit request: Request[AnyContent] =>
+    println(request.body)
+
     Redirect(routes.AdminController.index())
   }
 
