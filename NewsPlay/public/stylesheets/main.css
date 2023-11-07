@@ -46,3 +46,27 @@ p {
 .input-text {
     font-size: 1em
 }
+
+.grid {
+    border: 0.1em black solid; border-collapse: collapse; padding: 0.2em;
+}
+
+.grid th {
+    background-color: whitesmoke; padding-top: 0.2em; padding-bottom: 0.2em; padding-left: 0.8em; padding-right: 0.8em; border-right: 0.1em solid black;
+}
+
+.grid td {
+    padding-top: 0.2em; padding-bottom: 0.2em; padding-left: 0.8em; padding-right: 0.8em; border-right: 0.1em solid black;
+}
+
+.grid tr {
+    border-top: 0.1em black solid;
+}
+
+.grid tr:nth-child(odd) {
+   background-color: lightyellow;
+}
+
+.grid tr:nth-child(even) {
+    background-color: white;
+}
