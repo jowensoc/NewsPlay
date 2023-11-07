@@ -1,13 +1,11 @@
 package models
 
+import shared.SharedService
+
 class NewsArticle(val title: String, val reporter: String, val articleID: Int) {
 
   var content: String = initialiseContent()
-  val reportShortName: String = initaliseShortName()
-
-  def initaliseShortName(): String = {
-    reporter.replace(" ", "-").trim.toLowerCase()
-  }
+  val reportShortName: String = SharedService.generateShortName(reporter)
 
   def initialiseContent(): String = {
     val sb: StringBuilder = new StringBuilder()
