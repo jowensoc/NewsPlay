@@ -42,3 +42,7 @@ p {
 .dead-weight {
     clear: both
 }
+
+.input-text {
+    font-size: 1em
+}
