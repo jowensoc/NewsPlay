@@ -34,6 +34,19 @@ object NewsService {
     listOfNewsArticles.sortBy(item => item.reporter).distinctBy(item => item.reporter).map(x => new Reporter(x.reporter)).toList
   }
 
+  def DeleteNewsByID(articleID: Int): Boolean = {
+    val article = listOfNewsArticles.toList.find(item => item.articleID == articleID)
+
+    if (article.isEmpty) {
+      return false
+    }
+
+    val idx = listOfNewsArticles.indexOf(article.get)
+    listOfNewsArticles.remove(idx)
+
+    true
+  }
+
   def SearchArticlesByPattern(searchParameters: SearchParameters): List[NewsArticle] = {
     listOfNewsArticles.filter(item => matchOptionPattern(searchParameters.title, item.title) && searchParameters.reporterName.forall(_ == item.reporter)).toList
   }

@@ -78,4 +78,11 @@ class NewsServiceTest extends AnyFunSuiteLike with BeforeAndAfter {
 
     assert(results !== null)
   }
+
+  test("Delete News By ID") {
+    val articleID = NewsService.GetNews().head.articleID
+    val results = NewsService.DeleteNewsByID(articleID)
+
+    assert(results)
+  }
 }

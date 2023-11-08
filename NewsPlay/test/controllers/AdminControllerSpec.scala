@@ -13,7 +13,7 @@ import play.api.test.Helpers._
  */
 class AdminControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecting {
 
-  "Admin GET" should {
+  "AdminController GET" should {
 
     "render the index page from a new instance of controller" in {
       val controller = new AdminController(stubControllerComponents())
@@ -42,4 +42,5 @@ class AdminControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injectin
       contentAsString(home) must include ("Edit Articles")
     }
   }
+
 }
