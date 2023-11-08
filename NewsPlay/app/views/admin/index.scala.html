@@ -6,10 +6,12 @@
 
     <table class="grid">
         <tr>
-            <th>Title</th><th>Reporter</th><th>Options</th>
+            <th>Title</th>
+            <th>Reporter</th>
+            <th>Options</th>
         </tr>
         @for(item <- list) {
-            <tr class="">
+            <tr>
                 <td><a href="/admin/editnews/@item.articleID">@item.title</a></td>
                 <td>@item.reporter</td>
                 <td><p>Delete</p></td>
