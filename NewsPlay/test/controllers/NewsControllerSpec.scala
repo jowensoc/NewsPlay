@@ -39,7 +39,7 @@ class NewsControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecting
 
       status(home) mustBe OK
       contentType(home) mustBe Some("text/html")
-      contentAsString(home) must include ("Welcome to Play")
+      contentAsString(home) must include ("Potato")
     }
   }
 
@@ -48,11 +48,11 @@ class NewsControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecting
 
     "render the article page from a new instance of controller by ID" in {
       val controller = new NewsController(stubControllerComponents())
-      val home = controller.article(1).apply(FakeRequest(GET, "/news/1"))
+      val home = controller.article(2).apply(FakeRequest(GET, "/news/2"))
 
       status(home) mustBe OK
       contentType(home) mustBe Some("text/html")
-      contentAsString(home) must include("Jamie wins trip to New York")
+      contentAsString(home) must include("Glasgow to host Eurovision")
     }
 
     "render the article page as not found" in {

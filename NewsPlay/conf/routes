@@ -20,7 +20,5 @@ GET     /admin/                         controllers.AdminController.index()
 GET     /admin/createnews               controllers.AdminController.createnews()
 GET     /admin/editnews/:articleID      controllers.AdminController.editnews(articleID: Int)
 GET     /admin/deletenews/:articleID    controllers.AdminController.deleteNewsByID(articleID: Int)
-
-# update news
 +nocsrf
-POST     /admin/savenews                    controllers.AdminController.savenews()
+POST     /admin/savenews                controllers.AdminController.savenews()
