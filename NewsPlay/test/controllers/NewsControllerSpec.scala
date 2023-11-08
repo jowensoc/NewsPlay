@@ -43,6 +43,7 @@ class NewsControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecting
     }
   }
 
+
   "NewsArticle Route GET" should {
 
     "render the article page from a new instance of controller by ID" in {

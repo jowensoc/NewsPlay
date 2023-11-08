@@ -5,6 +5,7 @@ import models.{AdminOptions, NewsArticle}
 import javax.inject._
 import play.api._
 import play.api.mvc._
+import services.NewsService
 import shared.SharedService
 
 /**
@@ -52,4 +53,9 @@ class AdminController @Inject()(val controllerComponents: ControllerComponents) 
     Redirect(routes.AdminController.index())
   }
 
+  def deleteNewsByID(articleID: Integer) = Action { implicit request: Request[AnyContent] =>
+    NewsService.DeleteNewsByID(articleID)
+
+    Redirect(routes.AdminController.index())
+  }
 }
