@@ -17,8 +17,8 @@ GET     /reporter/:reporterShortName    controllers.NewsController.reporter(repo
 # edit news
 GET     /admin                          controllers.AdminController.index()
 GET     /admin/                         controllers.AdminController.index()
-GET     /admin/createnews               controllers.AdminController.createnews()
-GET     /admin/editnews/:articleID      controllers.AdminController.editnews(articleID: Int)
+GET     /admin/createnews               controllers.AdminController.createNews()
+GET     /admin/editnews/:articleID      controllers.AdminController.editNews(articleID: Int)
 GET     /admin/deletenews/:articleID    controllers.AdminController.deleteNewsByID(articleID: Int)
 +nocsrf
-POST     /admin/savenews                controllers.AdminController.savenews()
+POST    /admin/savenews                controllers.AdminController.saveNews()
