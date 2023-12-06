@@ -1,13 +1,19 @@
-@(article: NewsArticle, adminOptions: AdminOptions)
+@import helper._
+@import shared.NewsHelper
+
+@(article: NewsArticle, adminOptions: AdminOptions, form:Form[NewsArticleForm.Data])(implicit  messages: Messages)
 
 @main("News Article") {
     <h3>@adminOptions.pageHeading</h3>
 
-    @helper.form(action = routes.AdminController.savenews) {
+    @helper.form(action = routes.AdminController.saveNews) {
         <table>
             <tr>
                 <td><p>Title</p></td>
-                <td><input type="text" value="@article.title" id="ArticleTitle" class="input-text" /></td>
+                <td>
+                    <input type="text" value="@article.title" id="ArticleTitle" class="input-text" /><br/>
+                    @inputText(form("title"), Symbol("_label") -> "")<br/>
+                </td>
             </tr>
             <tr>
                 <td><p>Reporter</p></td>
@@ -22,5 +28,9 @@
             </tr>
         </table>
     }
+
+    @Html(NewsHelper.dumpFormData(form, "title"))
+    @Html(NewsHelper.dumpFormData(form, "reporterName"))
+    @Html(NewsHelper.dumpFormData(form, "articleContent"))
 
 }
