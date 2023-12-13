@@ -6,7 +6,7 @@
 @main("News Article") {
     <h3>@adminOptions.pageHeading</h3>
 
-    @helper.form(action = routes.AdminController.saveNews) {
+    @helper.form(action = routes.AdminController.saveNews()) {
         <table>
             <tr>
                 <td><p>Title</p></td>

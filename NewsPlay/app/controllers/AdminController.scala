@@ -57,7 +57,7 @@ class AdminController @Inject()(val controllerComponents: ControllerComponents) 
 
   def saveNews() = Action { implicit request: Request[AnyContent] =>
     //val formData: NewsArticleForm.Data = NewsArticleForm.form.bindFromRequest.get
-    val formData: NewsArticleForm.Data = NewsArticleForm.form.bindFromRequest.get
+    val formData: NewsArticleForm.Data = NewsArticleForm.form.bindFromRequest().get
 
     println(formData)
     
