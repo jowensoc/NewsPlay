@@ -4,6 +4,9 @@ import org.scalatestplus.play._
 import org.scalatestplus.play.guice._
 import play.api.test._
 import play.api.test.Helpers._
+import services.DatabaseEngine
+
+import scala.concurrent.ExecutionContext
 
 /**
  * Add your spec here.
@@ -13,7 +16,10 @@ import play.api.test.Helpers._
  */
 class HomeControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecting {
 
+
+
   "HomeController GET" should {
+
 
     "render the index page from a new instance of controller" in {
       val controller = new HomeController(stubControllerComponents())
@@ -21,7 +27,7 @@ class HomeControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecting
 
       status(home) mustBe OK
       contentType(home) mustBe Some("text/html")
-      contentAsString(home) must include ("Potato")
+      contentAsString(home) must include("Potato")
     }
 
     "render the index page from the application" in {

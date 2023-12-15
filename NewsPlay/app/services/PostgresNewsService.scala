@@ -1,13 +1,13 @@
 package services
 import models.{NewsArticle, Reporter, SearchParameters}
 
-class PostgresNewsService extends BaseNewsService {
+class PostgresNewsService(implicit dbEngine: DatabaseEngine) extends BaseNewsService {
   override def GetNews(): List[NewsArticle] = {
     null
   }
 
   override def GetNewsByID(articleID: Int): Option[NewsArticle] = {
-    null
+    dbEngine.
   }
 
   override def GetNewsByReporterShortName(reporterName: String): List[NewsArticle] = {
