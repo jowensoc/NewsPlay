@@ -12,8 +12,7 @@ import scala.concurrent.ExecutionContext
  * application's home page.
  */
 @Singleton
-class HomeController @Inject()(val controllerComponents: ControllerComponents, dbEngine: DatabaseEngine)
-                              (implicit executionContext: ExecutionContext) extends BaseController {
+class HomeController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
 
   /**
    * Create an Action to render an HTML page.

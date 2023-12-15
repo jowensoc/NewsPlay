@@ -10,6 +10,7 @@ lazy val root = (project in file("."))
       guice,
       "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test,
       "com.typesafe.play" %% "play-slick" % "5.1.0",
-      "org.postgresql" % "postgresql" % "42.5.4"
+      "org.postgresql" % "postgresql" % "42.5.4",
+      jdbc % Test
     )
   )

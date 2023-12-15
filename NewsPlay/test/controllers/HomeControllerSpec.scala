@@ -6,6 +6,8 @@ import play.api.test._
 import play.api.test.Helpers._
 import services.DatabaseEngine
 
+import scala.concurrent.ExecutionContext
+
 /**
  * Add your spec here.
  * You can mock out a whole application including requests, plugins etc.
@@ -14,18 +16,18 @@ import services.DatabaseEngine
  */
 class HomeControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecting {
 
-  val databaseEngine = new DatabaseEngine("default")
 
 
   "HomeController GET" should {
 
+
     "render the index page from a new instance of controller" in {
-      val controller = new HomeController(stubControllerComponents(), databaseEngine)
+      val controller = new HomeController(stubControllerComponents())
       val home = controller.index().apply(FakeRequest(GET, "/"))
 
       status(home) mustBe OK
       contentType(home) mustBe Some("text/html")
-      contentAsString(home) must include ("Potato")
+      contentAsString(home) must include("Potato")
     }
 
     "render the index page from the application" in {
