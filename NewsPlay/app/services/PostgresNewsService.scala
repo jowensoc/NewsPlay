@@ -7,7 +7,7 @@ class PostgresNewsService(implicit dbEngine: DatabaseEngine) extends BaseNewsSer
   }
 
   override def GetNewsByID(articleID: Int): Option[NewsArticle] = {
-    dbEngine.
+    null
   }
 
   override def GetNewsByReporterShortName(reporterName: String): List[NewsArticle] = {

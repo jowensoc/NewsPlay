@@ -4,16 +4,14 @@ import models.NewsArticle
 
 object SharedService {
 
-  def createNewsArticle(articleID: Int, title: String, reporter: String, content: String): NewsArticle = {
-    val newsArticle = new NewsArticle(title, reporter, articleID)
-    newsArticle.content = content
+  def createNewsArticle(articleID: Int, title: String, articleContent: String, reporterID: Int, reporterFirstName: String,reporterLastName: String): NewsArticle = {
+    val newsArticle = new NewsArticle(articleID, title, articleContent, reporterID, reporterFirstName, reporterLastName)
 
     newsArticle
   }
 
   def defaultNewsArticle(): NewsArticle = {
-    val newsArticle = new NewsArticle("", "", 0)
-    newsArticle.content = ""
+    val newsArticle = new NewsArticle(0, "", "", 0, "", "")
 
     newsArticle
   }

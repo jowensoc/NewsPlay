@@ -2,10 +2,12 @@ package models
 
 import shared.SharedService
 
-class NewsArticle(val title: String, val reporter: String, val articleID: Int) {
+case class NewsArticle(articleID: Int, title: String, articleContent: String, reporterID: Int, reporterFirstName: String, reporterLastName: String) {
 
-  var content: String = initialiseContent()
-  val reportShortName: String = SharedService.generateShortName(reporter)
+
+  var defaultContent: String = initialiseContent()
+  val reportShortName: String = SharedService.generateShortName(reporterFirstName + ' ' + reporterLastName)
+  val reporterFullName: String = reporterFirstName + ' ' + reporterLastName
 
   def initialiseContent(): String = {
     val sb: StringBuilder = new StringBuilder()

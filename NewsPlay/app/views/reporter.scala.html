@@ -4,6 +4,6 @@
     <h3>News Articles written by @reporterFullName</h3>
 
     @for(item <- list) {
-        <p><a href="/news/@item.articleID">@item.title</a> - @item.reporter</p>
+        <p><a href="/news/@item.articleID">@item.title</a> - @item.reporterFullName</p>
     }
 }
