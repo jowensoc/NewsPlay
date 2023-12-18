@@ -27,11 +27,11 @@ object NewsService {
 
   def SearchArticles(searchParameters: SearchParameters): List[NewsArticle] = {
    listOfNewsArticles.filter(item => searchParameters.title.forall(_ == item.title)
-      && searchParameters.reporterName.forall(_ == item.reporter)).toList
+      && searchParameters.reporterName.forall(_ == item.reporterFullName)).toList
   }
 
   def GetListOfReporters(): List[Reporter] = {
-    listOfNewsArticles.sortBy(item => item.reporter).distinctBy(item => item.reporter).map(x => new Reporter(x.reporter)).toList
+    listOfNewsArticles.sortBy(item => item.reporterFullName).distinctBy(item => item.reporterFullName).map(x => new Reporter(x.reporterFullName)).toList
   }
 
   def DeleteNewsByID(articleID: Int): Boolean = {
@@ -48,7 +48,7 @@ object NewsService {
   }
 
   def SearchArticlesByPattern(searchParameters: SearchParameters): List[NewsArticle] = {
-    listOfNewsArticles.filter(item => matchOptionPattern(searchParameters.title, item.title) && searchParameters.reporterName.forall(_ == item.reporter)).toList
+    listOfNewsArticles.filter(item => matchOptionPattern(searchParameters.title, item.title) && searchParameters.reporterName.forall(_ == item.reporterFullName)).toList
   }
 
   private def matchOptionPattern(option: Option[String], keyword: String): Boolean = {

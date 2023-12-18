@@ -27,7 +27,7 @@ class NewsController @Inject()(val controllerComponents: ControllerComponents) e
 
   def article(articleID: Int) = Action { implicit request: Request[AnyContent] =>
     val optNewsArticle = services.NewsService.GetNewsByID(articleID)
-    val blankArticle = SharedService.createNewsArticle(0, "Not Found", "Not Found", "<p>This article could not be found</p>")
+    val blankArticle = SharedService.createNewsArticle(0, "Not Found", "<p>This article could not be found</p>", 0, "", "")
 
     val newsArticle = optNewsArticle.getOrElse(blankArticle)
 
@@ -37,7 +37,7 @@ class NewsController @Inject()(val controllerComponents: ControllerComponents) e
   def reporter(reporterShortName: String) = Action { implicit request: Request[AnyContent] =>
     val cleanReporterName = reporterShortName.replace(" ", "-").trim.toLowerCase()
     val listOfArticles = services.NewsService.GetNewsByReporterShortName(cleanReporterName)
-    val reporterFullName = if (listOfArticles.nonEmpty) listOfArticles.head.reporter else "Reporter Name"
+    val reporterFullName = if (listOfArticles.nonEmpty) listOfArticles.head.reporterFirstName + " " + listOfArticles.head.reporterLastName else "Reporter Name"
 
     Ok(views.html.reporter(listOfArticles, reporterFullName))
   }

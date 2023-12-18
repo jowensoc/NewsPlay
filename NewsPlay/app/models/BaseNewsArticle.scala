@@ -1,5 +1,5 @@
 package models
 
-case class BaseNewsArticle(val articleID: Int, val title: String, val articleContent: String, val reporterID: Int) {
+case class BaseNewsArticle(articleID: Int, title: String, articleContent: String, reporterID: Int) {
 
 }

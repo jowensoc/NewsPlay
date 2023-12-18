@@ -13,7 +13,7 @@
         @for(item <- list) {
             <tr>
                 <td><a href="/admin/editnews/@item.articleID">@item.title</a></td>
-                <td>@item.reporter</td>
+                <td>@item.reporterFullName</td>
                 <td><p><a href="/admin/deletenews/@item.articleID">Delete</a></p></td>
             </tr>
         }
