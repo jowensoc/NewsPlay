@@ -1,13 +1,17 @@
 package services
 
+import scala.concurrent.{ExecutionContext, ExecutionContextExecutor, Future}
 import models.{NewsArticle, Reporter, SearchParameters}
 
+
+
 trait BaseNewsService {
-  def GetNews(): List[NewsArticle]
-  def GetNewsByID(articleID: Int): Option[NewsArticle]
-  def GetNewsByReporterShortName(reporterName: String): List[NewsArticle]
-  def SearchArticles(searchParameters: SearchParameters): List[NewsArticle]
-  def GetListOfReporters(): List[Reporter]
-  def DeleteNewsByID(articleID: Int): Boolean
-  def SearchArticlesByPattern(searchParameters: SearchParameters): List[NewsArticle]
+  def InitialiseNewsArticles(): Future[Option[List[NewsArticle]]]
+  def GetNews(): Future[Seq[NewsArticle]]
+  def GetNewsByID(articleID: Integer): Future[Option[NewsArticle]]
+  def GetNewsByReporterShortName(reporterName: String): Future[Seq[NewsArticle]]
+  def SearchArticles(searchParameters: SearchParameters): Future[Seq[NewsArticle]]
+  def GetListOfReporters(): Future[Seq[Reporter]]
+  def DeleteNewsByID(articleID: Integer): Future[Boolean]
+  def SearchArticlesByPattern(searchParameters: SearchParameters): Future[Seq[NewsArticle]]
 }

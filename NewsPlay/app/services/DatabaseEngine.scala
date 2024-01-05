@@ -27,11 +27,18 @@ class DatabaseEngine @Inject()(protected val dbConfigProvider: DatabaseConfigPro
   }
 
   private val newsArticles = TableQuery[NewsArticles]
-/*
+
   def GetArticles(): Future[Seq[NewsArticle]] = {
-    db.run(newsArticles.result)
+    val f = db.run(newsArticles.result)
+    f.map(seq => seq.map(articleToArticleRow))
   }
 
+  private def articleToArticleRow(article: NewsArticle): NewsArticle = {
+    NewsArticle(article.articleID, article.title, article.articleContent, article.reporterID, article.reporterFirstName, article.reporterLastName)
+  }
+
+
+  /*
   def GetArticleByID(articleID: Int): Future[NewsArticle] = {
     db.run(newsArticles.filter(item => item.ArticleID == articleID).result.head)
   }
