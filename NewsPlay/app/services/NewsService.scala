@@ -5,6 +5,7 @@ import models.{NewsArticle, Reporter, SearchParameters}
 
 object NewsService {
 
+  //private val dataService = new NewsDataService("test")
   private val dataService = new NewsDataService("test")
   private val listOfNewsArticles = initialiseArticles()
   private var environmentName = ""

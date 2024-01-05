@@ -4,7 +4,7 @@ import org.scalatest.BeforeAndAfter
 import org.scalatest.funsuite.AnyFunSuiteLike
 
 class PostgresNewsServiceTest extends AnyFunSuiteLike with BeforeAndAfter {
-  val newsService: PostgresNewsService = new PostgresNewsService();
+  //val newsService: PostgresNewsService = new PostgresNewsService();
 
 /*
   test("Get News By ID") {

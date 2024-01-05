@@ -6,17 +6,21 @@ import javax.inject._
 import play.api._
 import play.api.data.Form
 import play.api.mvc._
-import services.NewsService
+import services.{DatabaseEngine, NewsService, RootNewsService}
 import shared.SharedService
+
+import scala.concurrent.{ExecutionContext, ExecutionContextExecutor, Future}
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
  * application's home page.
  */
 @Singleton
-class AdminController @Inject()(val controllerComponents: ControllerComponents) extends BaseController with play.api.i18n.I18nSupport {
+class AdminController @Inject()(val controllerComponents: ControllerComponents)(implicit dbEngine: DatabaseEngine) extends BaseController with play.api.i18n.I18nSupport {
   import models.NewsArticleForm
+  implicit val ec: ExecutionContextExecutor = ExecutionContext.global
 
+  private val newsService = new RootNewsService()
 
   /**
    * Create an Action to render an HTML page.
@@ -25,9 +29,10 @@ class AdminController @Inject()(val controllerComponents: ControllerComponents) 
    * will be called when the application receives a `GET` request with
    * a path of `/`.
    */
-  def index() = Action { implicit request: Request[AnyContent] =>
-    val list = services.NewsService.GetNews();
-    Ok(views.html.admin.index(list))
+  def index() = Action.async { implicit request: Request[AnyContent] =>
+    val list = newsService.GetNews()
+
+    list.map(item => Ok(views.html.admin.index(item)))
   }
 
   def createNews() = Action { implicit request: Request[AnyContent] =>
@@ -66,7 +71,7 @@ class AdminController @Inject()(val controllerComponents: ControllerComponents) 
   }
 
   def deleteNewsByID(articleID: Integer) = Action { implicit request: Request[AnyContent] =>
-    NewsService.DeleteNewsByID(articleID)
+    newsService.DeleteNewsByID(articleID)
 
     Redirect(routes.AdminController.index())
   }

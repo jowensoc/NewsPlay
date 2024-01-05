@@ -28,7 +28,7 @@ class NewsServiceTest extends AnyFunSuiteLike with BeforeAndAfter {
 
   for (expectedReporter <- listOfReporters) {
     test("Check if news has " + expectedReporter + " as Reporter") {
-      val results = listOfNewsArticles.find(item => item.reporter.toLowerCase() === expectedReporter.toLowerCase())
+      val results = listOfNewsArticles.find(item => item.reporterFullName.toLowerCase() === expectedReporter.toLowerCase())
 
       assert(results !== null)
     }
@@ -69,7 +69,7 @@ class NewsServiceTest extends AnyFunSuiteLike with BeforeAndAfter {
 
     assert(results.nonEmpty)
 
-    val wrongReporter = results.find(item => item.reporter.toLowerCase() !== reporterName.toLowerCase())
+    val wrongReporter = results.find(item => item.reporterFullName.toLowerCase() !== reporterName.toLowerCase())
     assert(wrongReporter.isEmpty)
   }
 
