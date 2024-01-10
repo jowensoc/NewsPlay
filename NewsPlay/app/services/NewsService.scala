@@ -32,7 +32,7 @@ object NewsService {
   }
 
   def GetListOfReporters(): List[Reporter] = {
-    listOfNewsArticles.sortBy(item => item.reporterFullName).distinctBy(item => item.reporterFullName).map(x => new Reporter(x.reporterFullName)).toList
+    listOfNewsArticles.sortBy(item => item.reporterFullName).distinctBy(item => item.reporterFullName).map(x => new Reporter(x.reporterID, x.reporterFirstName, x.reporterLastName)).toList
   }
 
   def DeleteNewsByID(articleID: Int): Boolean = {

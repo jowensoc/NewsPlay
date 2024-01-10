@@ -76,4 +76,10 @@ class AdminController @Inject()(val controllerComponents: ControllerComponents)(
     Redirect(routes.AdminController.index())
   }
 
+  def listOfReporters() = Action.async { implicit request: Request[AnyContent] =>
+    val list = newsService.GetListOfReporters()
+
+    list.map(item => Ok(views.html.admin.reporters(item)))
+  }
+
 }

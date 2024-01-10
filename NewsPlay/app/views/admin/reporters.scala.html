@@ -1,0 +1,20 @@
+@(list: Seq[Reporter])
+
+@main("Potato News - Edit reporters") {
+    <h1>Edit Articles</h1>
+    <p>Update Reporter details below or create a new reporter</p>
+
+    <table class="grid">
+        <tr>
+            <th>Reporter</th>
+            <th>Options</th>
+        </tr>
+        @for(item <- list) {
+            <tr>
+                <td><a href="/admin/reporter/@item.reporterID">@item.fullName</a></td>
+                <td><p><a href="/admin/deletereporter/@item.reporterID">Delete</a></p></td>
+            </tr>
+        }
+    </table>
+
+}
