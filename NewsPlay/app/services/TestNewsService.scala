@@ -54,7 +54,7 @@ class TestNewsService extends BaseNewsService {
   }
 
   override def GetListOfReporters(): Future[Seq[Reporter]] = Future {
-    listOfNewsArticles.sortBy(item => item.reporterFullName).distinctBy(item => item.reporterFullName).map(x => new Reporter(x.reporterFullName)).toSeq
+    listOfNewsArticles.sortBy(item => item.reporterFullName).distinctBy(item => item.reporterFullName).map(x => new Reporter(x.reporterID, x.reporterFirstName, x.reporterLastName)).toSeq
   }
 
   override def DeleteNewsByID(articleID: Integer): Future[Boolean] = Future {

@@ -26,7 +26,7 @@ class PostgresNewsService(implicit dbEngine: DatabaseEngine) extends BaseNewsSer
   }
 
   override def GetListOfReporters(): Future[Seq[Reporter]] = {
-    null
+    dbEngine.GetReporters()
   }
 
   override def DeleteNewsByID(articleID: Integer): Future[Boolean] = {
